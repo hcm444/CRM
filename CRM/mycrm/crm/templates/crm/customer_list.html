@@ -1,0 +1,28 @@
+{% extends "crm/base.html" %}
+
+{% block content %}
+<h1 class="title">Customer List</h1>
+<table class="table is-fullwidth">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td><a href="{% url 'customer_detail' customer.pk %}">{{ customer.name }}</a></td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.address }}</td>
+            <td><a href="{% url 'customer_detail' customer.pk %}">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a class="button is-primary" href="{% url 'add_customer' %}">Add Customer</a>
+{% endblock %}

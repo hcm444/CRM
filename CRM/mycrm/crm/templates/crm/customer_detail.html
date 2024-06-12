@@ -1,0 +1,22 @@
+{% extends "crm/base.html" %}
+
+{% block content %}
+<h1 class="title">{{ customer.name }}</h1>
+<p>Email: {{ customer.email }}</p>
+<p>Phone: {{ customer.phone }}</p>
+<p>Address: {{ customer.address }}</p>
+
+<h2 class="subtitle">Notes</h2>
+<ul>
+    {% for note in notes %}
+    <li>{{ note.created_at }}: {{ note.text }}</li>
+    {% endfor %}
+</ul>
+
+<h2 class="subtitle">Add Note</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button is-primary">Add Note</button>
+</form>
+{% endblock %}
